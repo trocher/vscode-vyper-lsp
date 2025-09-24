@@ -1,37 +1,42 @@
 {
-    "name": "<pytool-module>",
-    "displayName": "<pytool-display-name>",
-    "description": "Linting support for python files using `<pytool-module>`.",
-    "version": "2022.0.0-dev",
+    "name": "vyper",
+    "displayName": "Vyper LSP",
+    "description": "Language server for Vyper",
+    "version": "0.0.1",
     "preview": true,
     "serverInfo": {
-        "name": "<pytool-display-name>",
-        "module": "<pytool-module>"
+        "name": "Vyper LSP",
+        "module": "vyper"
     },
-    "publisher": "<my-publisher>",
+    "publisher": "trocher",
     "license": "MIT",
-    "homepage": "https://github.com/<my-github>/<my-extension-project>",
+    "homepage": "https://github.com/trocher/vscode-vyper-lsp",
     "repository": {
         "type": "git",
-        "url": "https://github.com/<my-github>/<my-extension-project>.git"
+        "url": "https://github.com/trocher/vscode-vyper-lsp.git"
     },
     "bugs": {
-        "url": "https://github.com/<my-github>/<my-extension-project>/issues"
+        "url": "https://github.com/trocher/vscode-vyper-lsp/issues"
     },
+    "icon": "images/icon.png",
     "galleryBanner": {
-        "color": "#1e415e",
-        "theme": "dark"
+        "color": "#EDE5D5",
+        "theme": "light"
     },
     "keywords": [
-        "python",
-        "<pytool-module>"
+        "vyper",
+        "ethereum",
+        "compiler",
+        "vyper",
+        "blockchain",
+        "security",
+        "couleuvre"
     ],
     "engines": {
         "vscode": "^1.78.0"
     },
     "categories": [
         "Programming Languages",
-        "Linters",
         "Formatters"
     ],
     "extensionDependencies": [
@@ -40,12 +45,13 @@
     "capabilities": {
         "virtualWorkspaces": {
             "supported": false,
-            "description": "Virtual Workspaces are not supported with <pytool-display-name>."
+            "description": "Virtual Workspaces are not supported with Vyper LSP."
         }
     },
     "activationEvents": [
-        "onLanguage:python",
-        "workspaceContains:*.py"
+        "onLanguage:vyper",
+        "workspaceContains:*.vy",
+        "workspaceContains:*.vyi"
     ],
     "main": "./dist/extension.js",
     "scripts": {
@@ -59,53 +65,53 @@
         "lint": "eslint src --ext ts",
         "format-check": "prettier --check 'src/**/*.ts' 'build/**/*.yml' '.github/**/*.yml'",
         "test": "node ./out/test/runTest.js",
-        "vsce-package": "vsce package -o <pytool-module>.vsix"
+        "vsce-package": "vsce package -o vyper.vsix"
     },
     "contributes": {
         "configuration": {
             "properties": {
-                "<pytool-module>.args": {
+                "vyper.args": {
                     "default": [],
-                    "description": "Arguments passed in. Each argument is a separate item in the array.",
+                    "description": "Arguments passed in. Each argument is a separate item in the array. So far, no arguments are supported.",
                     "items": {
                         "type": "string"
                     },
                     "scope": "resource",
                     "type": "array"
                 },
-                "<pytool-module>.path": {
+                "vyper.path": {
                     "default": [],
-                    "description": "When set to a path to <pytool-module> binary, extension will use that. NOTE: Using this option may slowdown server response time.",
+                    "description": "When set to a path to couleuvre binary, extension will use that. NOTE: Using this option may slowdown server response time.",
                     "scope": "resource",
                     "items": {
                         "type": "string"
                     },
                     "type": "array"
                 },
-                "<pytool-module>.importStrategy": {
+                "vyper.importStrategy": {
                     "default": "useBundled",
-                    "description": "Defines where `<pytool-module>` is imported from. This setting may be ignored if `<pytool-module>.path` is set.",
+                    "description": "Defines where `couleuvre` is imported from. This setting may be ignored if `vyper.path` is set.",
                     "enum": [
                         "useBundled",
                         "fromEnvironment"
                     ],
                     "enumDescriptions": [
-                        "Always use the bundled version of `<pytool-module>`.",
-                        "Use `<pytool-module>` from environment, fallback to bundled version only if `<pytool-module>` not available in the environment."
+                        "Always use the bundled version of `couleuvre`.",
+                        "Use `couleuvre` from environment, fallback to bundled version only if `couleuvre` not available in the environment."
                     ],
                     "scope": "window",
                     "type": "string"
                 },
-                "<pytool-module>.interpreter": {
+                "vyper.interpreter": {
                     "default": [],
-                    "description": "When set to a path to python executable, extension will use that to launch the server and any subprocess.",
+                    "description": "When set to a path to python executable, the extension will use that to launch the server and any subprocess. Note that if set: Couleuvre will be fetched from that environment, and Vyper external imports (e.g. snekmate) are resolved relative to the interpreter's environment.",
                     "scope": "resource",
                     "items": {
                         "type": "string"
                     },
                     "type": "array"
                 },
-                "<pytool-module>.showNotifications": {
+                "vyper.showNotifications": {
                     "default": "off",
                     "description": "Controls when notifications are shown by this extension.",
                     "enum": [
@@ -128,8 +134,22 @@
         "commands": [
             {
                 "title": "Restart Server",
-                "category": "<pytool-display-name>",
-                "command": "<pytool-module>.restart"
+                "category": "Vyper LSP",
+                "command": "vyper.restart"
+            }
+        ],
+        "languages": [
+            {
+                "id": "vyper",
+                "aliases": [
+                    "Vyper",
+                    "vyper",
+                    "vy"
+                ],
+                "extensions": [
+                    ".vy",
+                    ".vyi"
+                ]
             }
         ]
     },
