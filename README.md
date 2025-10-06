@@ -2,6 +2,9 @@
 
 Vyper language server extension for Visual Studio Code.
 
+- VSCode Marketplace: https://marketplace.visualstudio.com/items?itemName=trocher.vyper
+- Open VSX: https://open-vsx.org/extension/trocher/vyper
+
 ## About
 
 This project is an **alpha release** of a Visual Studio Code extension that provides a language server for [Vyper](https://vyper.readthedocs.io/), a smart contract programming language.
@@ -26,9 +29,9 @@ Resolving external dependencies is what is trickier.
 - If Vyper is not installed in that environment, or the contract uses another version of Vyper, the server will work with a managed environement, but external dependencies will not be resolved.
 
 - More advanced users can specify a specific Python interpreter to use via the `vyper.interpreter` setting. This is useful if you want to specify a different environment than the one used by VSCode, in which case:
-  - Couleuvre should be installed in that environment.
+  - [Couleuvre](https://github.com/trocher/couleuvre) should be installed in that environment.
   - Any Vyper external imports (e.g. snekmate) are resolved relative to the interpreter's environment.
 
 ## Disclaimer
 
-This extension is in early development, use at your own risk. Couleuvre is not affiliated with the Vyper project.
+This extension is in early development, use at your own risk. This extension is not affiliated with the Vyper project.
