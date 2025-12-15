@@ -36,7 +36,13 @@ def _check_files(names: List[str]) -> None:
 
 # Remove --generate-hashes for local testing
 def _update_pip_packages(session: nox.Session) -> None:
-    session.run("pip-compile", "--generate-hashes", "--resolver=backtracking", "--upgrade", "./requirements.in")
+    session.run(
+        "pip-compile",
+        "--generate-hashes",
+        "--resolver=backtracking",
+        "--upgrade",
+        "./requirements.in",
+    )
     session.run(
         "pip-compile",
         "--generate-hashes",
