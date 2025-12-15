@@ -4,15 +4,11 @@
 
 from __future__ import annotations
 
-import copy
 import json
 import os
 import pathlib
-import re
 import sys
-import sysconfig
-import traceback
-from typing import Any, Optional, Sequence
+from typing import Any, Optional
 
 
 # **********************************************************
@@ -38,9 +34,8 @@ update_sys_path(
 # **********************************************************
 # pylint: disable=wrong-import-position,import-error
 import lsp_jsonrpc as jsonrpc
-import lsp_utils as utils
 import lsprotocol.types as lsp
-from pygls import server, uris, workspace
+from pygls import uris
 import couleuvre
 
 WORKSPACE_SETTINGS = {}
@@ -48,11 +43,11 @@ GLOBAL_SETTINGS = {}
 RUNNER = pathlib.Path(__file__).parent / "lsp_runner.py"
 
 MAX_WORKERS = 5
-# TODO: Update the language server name and version.
+
 LSP_SERVER = couleuvre.server
 
 # **********************************************************
-# Tool specific code goes below this.
+# Tool specific code
 # **********************************************************
 
 # Reference:
@@ -64,17 +59,11 @@ LSP_SERVER = couleuvre.server
 #  Black: https://github.com/microsoft/vscode-black-formatter/blob/main/bundled/tool
 #  isort: https://github.com/microsoft/vscode-isort/blob/main/bundled/tool
 
-# TODO: Update TOOL_MODULE with the module name for your tool.
-# e.g, TOOL_MODULE = "pylint"
 TOOL_MODULE = "couleuvre"
 
-# TODO: Update TOOL_DISPLAY with a display name for your tool.
-# e.g, TOOL_DISPLAY = "Pylint"
 TOOL_DISPLAY = "Vyper LSP"
 
-# TODO: Update TOOL_ARGS with default argument you have to pass to your tool in
-# all scenarios.
-TOOL_ARGS = []  # default arguments always passed to your tool.
+TOOL_ARGS = []  # default arguments always passed to couleuvre.
 
 
 # **********************************************************
@@ -148,25 +137,25 @@ def _update_workspace_settings(settings):
 def log_to_output(
     message: str, msg_type: lsp.MessageType = lsp.MessageType.Log
 ) -> None:
-    LSP_SERVER.show_message_log(message, msg_type)
+    LSP_SERVER.window_log_message(lsp.LogMessageParams(message=message, type=msg_type))
 
 
 def log_error(message: str) -> None:
-    LSP_SERVER.show_message_log(message, lsp.MessageType.Error)
+    LSP_SERVER.window_log_message(lsp.LogMessageParams(message=message, type=lsp.MessageType.Error))
     if os.getenv("LS_SHOW_NOTIFICATION", "off") in ["onError", "onWarning", "always"]:
-        LSP_SERVER.show_message(message, lsp.MessageType.Error)
+        LSP_SERVER.window_show_message(lsp.ShowMessageParams(message=message, type=lsp.MessageType.Error))
 
 
 def log_warning(message: str) -> None:
-    LSP_SERVER.show_message_log(message, lsp.MessageType.Warning)
+    LSP_SERVER.window_log_message(lsp.LogMessageParams(message=message, type=lsp.MessageType.Warning))
     if os.getenv("LS_SHOW_NOTIFICATION", "off") in ["onWarning", "always"]:
-        LSP_SERVER.show_message(message, lsp.MessageType.Warning)
+        LSP_SERVER.window_show_message(lsp.ShowMessageParams(message=message, type=lsp.MessageType.Warning))
 
 
 def log_always(message: str) -> None:
-    LSP_SERVER.show_message_log(message, lsp.MessageType.Info)
+    LSP_SERVER.window_log_message(lsp.LogMessageParams(message=message, type=lsp.MessageType.Info))
     if os.getenv("LS_SHOW_NOTIFICATION", "off") in ["always"]:
-        LSP_SERVER.show_message(message, lsp.MessageType.Info)
+        LSP_SERVER.window_show_message(lsp.ShowMessageParams(message=message, type=lsp.MessageType.Info))
 
 
 # *****************************************************
