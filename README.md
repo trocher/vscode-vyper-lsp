@@ -1,5 +1,13 @@
 # Vyper LSP For VSCode
 
+[![VSCode Version](https://vsmarketplacebadges.dev/version/trocher.vyper.png)](https://marketplace.visualstudio.com/items?itemName=trocher.vyper)
+[![VSCode Downloads](https://vsmarketplacebadges.dev/downloads-short/trocher.vyper.png)](https://marketplace.visualstudio.com/items?itemName=trocher.vyper)
+
+[![Open VSX Version](https://img.shields.io/open-vsx/v/trocher/vyper)](https://open-vsx.org/extension/trocher/vyper)
+[![Open VSX Downloads](https://img.shields.io/open-vsx/dt/trocher/vyper)](https://open-vsx.org/extension/trocher/vyper)
+
+
+
 Vyper language server extension for Visual Studio Code.
 
 - VSCode Marketplace: https://marketplace.visualstudio.com/items?itemName=trocher.vyper
