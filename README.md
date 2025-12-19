@@ -24,8 +24,11 @@ This extension is a client that relies on [Couleuvre](https://github.com/trocher
 ## Features
 
 - **Jump to definition**: Navigate to the definition of variables, functions, and contracts within your Vyper code.
-- **Find symbols**: Quickly locate symbols in your Vyper files.
 - **Go to modules**: Easily navigate to imported modules in your Vyper projects.
+- **Jump to references**: Find all references to a symbol in your Vyper files.
+- **Find symbols**: Quickly locate symbols in your Vyper files.
+- **Diagnostics**: Get real-time feedback on syntax and semantic errors in your Vyper code.
+- **Auto-completion**: Benefit from intelligent code completion suggestions as you type.
 
 ## Setting Up
 
@@ -36,7 +39,9 @@ Resolving external dependencies is what is trickier.
 - By default, the extension will try to use the python interpreter inherited from VSCode (`Python: Select Interpreter`) and its corresponding `sys.path` to look for external dependencies (e.g. `snekmate`)
 - If Vyper is not installed in that environment, or the contract uses another version of Vyper, the server will work with a managed environement, but external dependencies will not be resolved.
 
-- More advanced users can specify a specific Python interpreter to use via the `vyper.interpreter` setting. This is useful if you want to specify a different environment than the one used by VSCode, in which case:
+### Advanced Configuration
+
+More advanced users can specify a specific Python interpreter to use via the `vyper.interpreter` setting. This is useful if you want to specify a different environment than the one used by VSCode, in which case:
   - [Couleuvre](https://github.com/trocher/couleuvre) should be installed in that environment.
   - Any Vyper external imports (e.g. snekmate) are resolved relative to the interpreter's environment.
 
