@@ -17,9 +17,9 @@ cattrs==25.3.0 \
     # via
     #   lsprotocol
     #   pygls
-couleuvre==0.0.1 \
-    --hash=sha256:672af00541db9cdf54dc9f6d93ea39b611eb04ce4b57d0817955898b0475f48a \
-    --hash=sha256:e2f9de1a9d21dde77887bc30f7dcb92b61fa99f373d5796c1bd1782c26824907
+couleuvre==0.0.3 \
+    --hash=sha256:5a66756515800bbff87e423b4836a5708092b605e86d928f45ac4c456145fe50 \
+    --hash=sha256:77e0be7f77ff8d624390a94159e3756ee1fcc4a890d927e7b585b261fd3576b9
     # via -r requirements.in
 lsprotocol==2025.0.0 \
     --hash=sha256:e879da2b9301e82cfc3e60d805630487ac2f7ab17492f4f5ba5aaba94fe56c29 \
