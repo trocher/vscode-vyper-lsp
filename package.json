@@ -2,7 +2,7 @@
     "name": "vyper",
     "displayName": "Vyper LSP",
     "description": "Language server for Vyper",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "preview": true,
     "serverInfo": {
         "name": "Vyper LSP",
